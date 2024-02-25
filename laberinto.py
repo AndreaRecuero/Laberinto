@@ -20,7 +20,7 @@ class Juego:
     def fabricarLaberinto(self):
         return Laberinto()
 
-    def fabricarLaberinto2HabitacionesFM(self):
+    def fabricarLaberinto2HabitacionesFM(self):  #factory method
         self.laberinto = self.fabricarLaberinto()
         hab1 = self.fabricarHabitacion(1)
         hab2 = self.fabricarHabitacion(2)
@@ -44,7 +44,7 @@ class Juego:
         return self.laberinto
 
 
-class juegoBomba(Juego):
+class juegoBomba(Juego):  #subclase Juego
     def fabricarPared(self):
         return ParedBomba()
 
@@ -57,7 +57,7 @@ class ElementoMapa:
         pass
 
 
-class Contenedor(ElementoMapa):
+class Contenedor(ElementoMapa):  #subclase ElementoMapa
     def __init__(self):
         self.hijos = []
 
@@ -68,17 +68,7 @@ class Contenedor(ElementoMapa):
         self.hijos.remove(hijo)
 
 
-class Hoja(ElementoMapa):
-    def accept(self, visitor):
-        visitor.visitHoja(self)
-
-
-class Decorator(Hoja):
-    def __init__(self, component):
-        self.component = component
-
-
-class Laberinto(Contenedor):
+class Laberinto(Contenedor):    #subclase Contenedor
     def __init__(self):
         self.habitaciones = []
 
@@ -89,7 +79,7 @@ class Laberinto(Contenedor):
         self.habitaciones[0].entrar()
 
 
-class Habitacion(Contenedor):
+class Habitacion(Contenedor):   #subclase Contenedor
     def __init__(self, id):
         self.norte = None
         self.este = None
@@ -101,7 +91,16 @@ class Habitacion(Contenedor):
         print("Estás en habitación ", self.id)
 
 
-class Puerta(ElementoMapa):
+class Hoja(ElementoMapa):   #subclase ElementoMapa
+    def accept(self, visitor):
+        visitor.visitHoja(self)
+
+class Decorator(Hoja): #subclase Hoja
+    def __init__(self, component):
+        self.component = component
+
+
+class Puerta(ElementoMapa):     #subclase ElementoMapa
     def __init__(self, lado1, lado2):
         self.lado1 = lado1
         self.lado2 = lado2
@@ -115,7 +114,7 @@ class Puerta(ElementoMapa):
             print("Puerta cerrada")
 
 
-class Pared(ElementoMapa):
+class Pared(ElementoMapa):  #subclase ElementoMapa
     def __init__(self):
         pass  # Las paredes no necesitan atributos adicionales
 
@@ -123,7 +122,7 @@ class Pared(ElementoMapa):
         print("Te has chocado con una pared")
 
 
-class ParedBomba(Pared):
+class ParedBomba(Pared):    #subclase Pared
     def __init__(self):
         self.activa = False
 
