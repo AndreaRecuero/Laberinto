@@ -1,5 +1,6 @@
 import unittest
-from laberinto import Juego, Laberinto, Habitacion, Puerta
+from laberinto import Laberinto, Habitacion, Puerta
+from juego import Juego
 
 class TestJuegoLaberinto(unittest.TestCase):
 
@@ -9,7 +10,7 @@ class TestJuegoLaberinto(unittest.TestCase):
         
         self.assertIsInstance(laberinto, Laberinto)
         
-        habitaciones = laberinto.habitaciones
+        habitaciones = laberinto.hijos
         self.assertEqual(len(habitaciones), 2)
         
         hab1, hab2 = habitaciones
