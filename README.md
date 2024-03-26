@@ -1,4 +1,4 @@
-# Maze Game 2024
+# Juego Laberinto 2024
 Proyecto del laberinto del curso 23-24
 
 Prompt Inicial:
